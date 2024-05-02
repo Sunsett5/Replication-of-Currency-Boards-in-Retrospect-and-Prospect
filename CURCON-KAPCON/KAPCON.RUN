@@ -1,0 +1,42 @@
+output file=c:\users\cbrdbook\data\kapcon\kapcon.out reset;
+yrs = seqa(1970,1,33);
+
+load ifscodes[167,1]=c:\users\cbrdbook\data\kapcon\NAMEVEC.OUT;
+
+load kapcon[866,35]=c:\users\cbrdbook\data\kapcon\kapcon.prn;
+
+ /* first row is country code, yrs 1960-97*/
+
+result = zeros(7000,7);
+zz=1;
+ do while zz<=5;
+  k=1;
+   i=2;
+  do while i <=rows(kapcon);
+   nam = kapcon[i,1];
+   var = kapcon[i,2];
+    j=1;
+      do while j<=rows(ifscodes);   @check whether this country should be included in the dataset@
+         if nam == ifscodes[j,1];
+          if var == zz;
+            loc1 = k + (k-1)*32;
+            loc2 = loc1+32;
+            namx = ones(33,1)*nam;
+            result[loc1:loc2,1] = namx;
+            result[loc1:loc2,2] = yrs;
+            result[loc1:loc2,(zz+2)] = kapcon[i,3:35]';
+            k=k+1;
+         endif;
+        endif;
+        j=j+1;
+       endo;
+
+   i=i+1;
+  endo;
+ zz=zz+1;
+endo;
+
+output file=c:\users\cbrdbook\data\kapcon\kapcon.out reset;
+outwidth 132;
+print result;
+

@@ -1,0 +1,56 @@
+OUTPUT FILE= WEOLOAD.OUT RESET;
+LOAD X1[4843,17]=WEOGAUS1.PRN;
+LOAD X2[4843,17]=WEOGAUS2.PRN;
+load X3[4843,5]= WEOGAUS3.PRN;
+
+X = X1[.,1:17]~X2[.,3:17]~X3[.,3:5];
+LOAD NAMES[167,1]=NAMEVEC.OUT;
+
+RESULT=ZEROS(5600,31);
+RESULT=MISS(RESULT,0);
+
+V=1;
+ DO WHILE V<=31;
+K=1;
+ DO WHILE K <=ROWS(NAMES);
+  NAM=NAMES[K,1];
+
+       LOC1 = (K-1)*33+1;
+       LOC2 = (K-1)*33+33;
+   I=1;
+     DO WHILE I<=ROWS(X);
+     IF X[I,2] == V;
+      IF X[I,1] == NAM;
+        Y = X[I,3:35]';
+        YRS=SEQA(1970,1,33);
+        RESULT[LOC1:LOC2,1] = NAM*ONES(33,1);
+        RESULT[LOC1:LOC2,2] = YRS;
+
+        RESULT[LOC1:LOC2,V+2] = Y;
+      ENDIF;
+     ENDIF;
+      I=I+1;
+     ENDO;
+   K=K+1;
+  ENDO;
+ V=V+1;
+ENDO;
+V=V-1;
+
+@FORMAT 8,4;@
+OUTWIDTH 250;
+rex2=RESULT[.,1:2]~RESULT[.,11:20];
+rex3=RESULT[.,1:2]~RESULT[.,21:31];
+"----------------------------Result 1-------------------------";
+OUTPUT FILE=WEOLOAD1.OUT RESET;
+RESULT[.,1:10]; 
+"----------------------------Result 2-------------------------";
+OUTPUT FILE=WEOLOAD2.OUT RESET;
+@RESULT[.,11:20];@
+REX2;
+"----------------------------Result 3-------------------------";
+OUTPUT FILE=WEOLOAD3.OUT RESET;
+@RESULT[.,21:31];@
+REX3;
+
+END;

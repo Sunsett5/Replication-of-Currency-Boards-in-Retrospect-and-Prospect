@@ -1,0 +1,49 @@
+OUTPUT FILE= c:\users\cbrdbook\data\cbturn\CBLOAD.OUT RESET;
+load X[6346,5]=c:\users\cbrdbook\data\cbturn\CBTURN.PRN;
+
+LOAD NAMES[167,1]=c:\users\cbrdbook\data\cbturn\NAMEVEC.OUT;
+
+RESULT=ZEROS(5511,5);
+RESULT=MISS(RESULT,0);
+
+J=1;
+K=1;
+ DO WHILE K <=ROWS(NAMES);
+  NAM=NAMES[K,1];
+
+   I=2;
+     DO WHILE I<=ROWS(X);
+     IF X[I,1]==NAM;
+      IF X[I,2] >=1970;
+        RESULT[J,.] = X[I,.];
+        J=J+1;
+      ENDIF;
+      IF X[I,2] ==1997;
+        RESULT[J,.] = X[I,.];
+        RESULT[J,2] = 1998;
+        J=J+1;
+        RESULT[J,.] = X[I,.];
+        RESULT[J,2] = 1999;
+        J=J+1;
+        RESULT[J,.] = X[I,.];
+        RESULT[J,2] = 2000;
+        J=J+1;
+        RESULT[J,.] = X[I,.];
+        RESULT[J,2] = 2001;
+        J=J+1;
+	RESULT[J,.] = X[I,.];
+        RESULT[J,2] = 2002;
+        J=J+1;
+
+      ENDIF;
+     ENDIF;
+    I=I+1;
+    ENDO;
+   K=K+1;
+  ENDO;
+
+FORMAT 7,4;
+
+RESULT;
+END;
+

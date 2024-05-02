@@ -1,0 +1,1720 @@
+
+                     -------------------------------------
+                     |        this copy licensed         |
+                     |            for use by:            |
+                     | TSP/GiveWin 4.5 User   #45AGT0017 |
+                     -------------------------------------
+                                TSP Version 4.5
+                          (07/16/01) TSP/GiveWin  25MB
+                     Copyright (C) 2001 TSP International
+                              ALL RIGHTS RESERVED
+                               07/14/05 12:27PM
+               In case of questions or problems, see your local TSP 
+               consultant or send a description of the problem and the 
+               associated TSP output to:
+                               TSP International
+                                P.O. Box 61015
+                              Palo Alto, CA 94306
+                                      USA
+         PROGRAM
+COMMAND  ***************************************************************
+|      1  OPTIONS MEMORY=25  LIMERR=25 LIMCOL=200;
+|      2  OPTIONS DOUBLE;
+|      3  REGOPT(SHORTLAB,PVPRINT,STARS) @T;
+|      4
+|      4  SMPL 1,5511;
+|      5
+|      5
+|      5  READ(FILE='C:\users\cbrdbook\data\weodata\WEOtsp.xls',FORMAT=LOTUS);
+|      6
+|      6
+|      6  CPIGX = CPIG/(1+CPIG);
+|      7  BMGX = BMG/(1+BMG);
+|      8
+|      8  OUT cbrdata;
+|      9  KEEP
+|      9  NAM
+|      9  YRS
+|      9  NGDP
+|      9  NGDP_R
+|      9  NGDPD
+|      9  PPPPC
+|      9  BCA
+|      9  GCB
+|      9  GGB
+|      9  NX
+|      9  NM
+|      9  NFI
+|      9  LP
+|      9  TXG_R
+|      9  TX_R
+|      9  TMG_R
+|      9  TM_R
+|      9  FMB
+|      9  FIDR
+|      9  BFRA
+|      9  BRASS
+|      9  PCPI
+|      9  ENDA
+|      9  EDNA
+|      9  NGS
+|      9  NGSP
+|      9  NGSG
+|      9  NCP
+|      9  NCP_R
+|      9  GGENL
+|      9  GGRG
+|      9  TT
+|      9  CPIG
+|      9  GDPG
+|      9  GDPPC
+|      9  GDPPCG
+|      9  BMG
+|      9  ?OLDBMG
+|      9  IRATE
+|      9  XGDP
+|      9  MGDP
+|      9  XG
+|      9  XGM3
+|      9  MG
+|      9  MGM3
+|      9  POP
+|      9  POPG
+|      9  NGDP
+|      9  USGDP
+|      9  CGGDP
+|      9  CGGDPM3
+|      9  GGGDP
+|      9  GGGDPM3
+|      9  TAXGDP
+|      9  TAXGDPM3
+|      9  GAP
+|      9  SAVPGDP
+|      9  SAVGGDP
+|      9  IGDP
+|      9  CAGDP
+|      9  EXCHAOP
+|      9  TTG
+|      9  TTGM3
+|      9  TTGS3
+|      9  POPGM3
+|      9  GDPPCGS3
+|      9  IGDPM3
+|      9  IGDPS3
+|      9  BMGDP
+|      9  BMGDPG
+|      9  BMR
+|      9  BMRG
+|      9  NCPRG
+|      9  NCPRGS3
+|      9  NCGDP
+|      9  NCGDPS3
+|      9  GDPGS3
+|      9  RGDPHP
+|      9  RGDPDV
+|      9  RGDPDVS3
+|      9  RGDPAVG
+|      9  RGDPFV
+|      9  RGDPFV1
+|      9  RGDPFV2
+|      9  DISA
+|      9  DISB
+|      9  DISC
+|      9  DUR1DISA
+|      9  DUR2DISA
+|      9  DUR3DISA
+|      9  SUR1DISA
+|      9  SUR2DISA
+|      9  SUR3DISA
+|      9  DUR1DISB
+|      9  DUR2DISB
+|      9  DUR3DISB
+|      9  SUR1DISB
+|      9  SUR2DISB
+|      9  SUR3DISB
+|      9  DUR1DISC
+|      9  DUR2DISC
+|      9  DUR3DISC
+|      9  SUR1DISC
+|      9  SUR2DISC
+|      9  SUR3DISC
+|      9  CPIGX
+|      9  BMGX
+|      9  LNGDPRHP
+|      9  RGDPHPDV
+|      9  HPDVS3
+|      9
+|      9
+|      9
+|      9
+|      9  ;
+|     10
+|     10
+|     10
+|     10
+|     10
+|     10
+|     10
+|     10
+|     10
+|     10
+|     10
+|     10
+|     10  SMPL 1,5511;
+|     11
+|     11
+|     11
+|     11  
+    READ(FILE='C:\users\cbrdbook\data\barrolee\BARROTSP.XLS',FORMAT=LOTUS);
+|     12
+|     12
+|     12  OUT cbrdata;
+|     13  KEEP
+|     13  NOSCH
+|     13  FRSTSCH1
+|     13  FRSTSCH2
+|     13  SECSCH1
+|     13  SECSCH2
+|     13  THRSCH1
+|     13  THRSCH2
+|     13  AVGYRSCH
+|     13  ;
+|     14  READ(FILE='C:\users\cbrdbook\data\CBTURN\CBTRNTSP.XLS',FORMAT=LOTUS);
+|     15
+|     15
+|     15  OUT cbrdata;
+|     16  KEEP
+|     16  CBGOV
+|     16  CBTURN5
+|     16  CBTURN10;
+|     17
+|     17
+|     17
+|     17
+|     17
+|     17  ? CAPITAL CONTROLS DATA
+|     17  READ(FILE='C:\users\cbrdbook\data\KAPCON\KAPTSP.XLS',FORMAT=LOTUS);
+|     18
+|     18  NOCURCON=1-CURCON;
+|     19  NOKAPCON = 1-KAPCON;
+|     20
+|     20  OUT cbrdata;
+|     21  KEEP
+|     21  CURCON
+|     21  KAPCON
+|     21  CURCON1
+|     21  CURCON2
+|     21  CURCON3
+|     21  NOCURCON
+|     21  NOKAPCON
+|     21  ;
+|     22
+|     22
+|     22
+|     22  ? DEJURE EXCHANGE RATE REGIMES
+|     22
+|     22  
+    READ(FILE='C:\users\cbrdbook\data\REGIMES\REGIMETS.XLS',FORMAT=LOTUS);
+|     23
+|     23
+|     23
+|     23
+|     23  SMPL 1,5511;
+|     24  JUREPEG =  1*(DEJUREA=1);
+|     25  JUREINT = 1*(DEJUREA=2);
+|     26  JUREFLT = 1*(DEJUREA=3);
+|     27
+|     27
+|     27  JURE1 = 1*(DEJUREB=1);
+|     28  JURE2 = 1*(DEJUREB=2);
+|     29  JURE3 = 1*(DEJUREB=3);
+|     30  JURE4 = 1*(DEJUREB=4);
+|     31  JURE5 = 1*(DEJUREB=5);
+|     32  JURE6 = 1*(DEJUREB=6);
+|     33
+|     33
+|     33  REG1 = 1*((REGIME=700));  ? DOLLARIZED
+|     34  REG2 = 1*((REGIME=110));  ? Currency Board
+|     35  REG3 = 1*((REGIME=101)|(REGIME=510)); ? MONETARY UNION TO 
+    OUTSIDE(CFA) OR INSIDE (EMU) COUNTRIES
+|     36  REG4 = 1*((REGIME=100)|(REGIME=111)|(REGIME=112)|(REGIME=113)); ? 
+    SINGLE CURRENCY PEG
+|     37  REG5 = 1*((REGIME=200)|(REGIME=221)|(REGIME=222)|(REGIME=223)|
+|     37            (REGIME=300)|(REGIME=331)|(REGIME=332)|(REGIME=333) ); 
+    ?PUBLISHED (SDR, NON-SDR) PEGS
+|     38  REG6 = 1*((REGIME=400)|(REGIME=441)|(REGIME=442)|(REGIME=443) ); ? 
+    SECRET BASEKET
+|     39
+|     39  REG7 = 1*((REGIME=500));  ? COOPERATIVE REGIME, EMS AND PREDECESSOR
+|     40  REG8 = 1*((REGIME=611));  ? CRAWLING PEG
+|     41  REG9 = 1*((REGIME=612));  ? TARGET ZONE
+|     42  REG10 = 1*((REGIME=661)); ? UNCLASSIFIED RULE
+|     43  REG11 = 1*((REGIME=621)); ? MANAGED FLOAT WITH HEAVY INTERVENTION
+|     44  REG12 = 1*((REGIME=662)); ? UNCLASSIFIED MANAGED FLOAT
+|     45  REG13 = 1*((REGIME=600)); ? OTHER FLOATS
+|     46  REG14 = 1*((REGIME=622)); ? FLOAT WITH LIGHT INTERVENTION
+|     47  REG15 = 1*((REGIME=663)); ? FLOAT WITHOUT INTERVENTION
+|     48
+|     48  SMPL 1,5511;
+|     49
+|     49  READ(FILE='C:\users\cbrdbook\data\reer\reeraop.XLS',FORMAT=LOTUS);
+|     50
+|     50
+|     50  
+    READ(FILE='C:\users\cbrdbook\data\rebound\gapregts.xls',FORMAT=LOTUS);
+|     51
+|     51  
+    READ(FILE='C:\users\cbrdbook\data\XPORT3\GDPDISTSP.XLS',FORMAT=LOTUS);
+|     52  READ(FILE='C:\users\cbrdbook\data\crisis\BNKCRTSP.XLS',FORMAT=LOTUS);
+|     53
+|     53
+|     53
+|     53  ?WRITE(FILE='REGCHK.XLS',FORMAT=LOTUS) NAM YRS DEJUREA DEJUREB 
+    DEJUREC JUREHRD JUREPEG JUREINT JUREFLT;
+|     53
+|     53
+|     53  OUT cbrdata;
+|     54  KEEP
+|     54   DEJUREA
+|     54   DEJUREB
+|     54
+|     54
+|     54  JUREPEG
+|     54  JUREINT
+|     54  JUREFLT
+|     54
+|     54
+|     54  JURE1
+|     54  JURE2
+|     54  JURE3
+|     54  JURE4
+|     54  JURE5
+|     54  JURE6
+|     54
+|     54
+|     54  REGIME
+|     54  REG1
+|     54  REG2
+|     54  REG3
+|     54  REG4
+|     54  REG5
+|     54  REG6
+|     54  REG7
+|     54  REG8
+|     54  REG9
+|     54  REG10
+|     54  REG11
+|     54  REG12
+|     54  REG13
+|     54  REG14
+|     54  REG15;
+|     55
+|     55
+|     55
+|     55
+|     55
+|     55
+|     55
+|     55
+|     55  YRS70 = 1*(YRS=1970);
+|     56  YRS71 = 1*(YRS=1971);
+|     57  YRS72 = 1*(YRS=1972);
+|     58  YRS73 = 1*(YRS=1973);
+|     59  YRS74 = 1*(YRS=1974);
+|     60  YRS75 = 1*(YRS=1975);
+|     61  YRS76 = 1*(YRS=1976);
+|     62  YRS77 = 1*(YRS=1977);
+|     63  YRS78 = 1*(YRS=1978);
+|     64  YRS79 = 1*(YRS=1979);
+|     65  YRS80 = 1*(YRS=1980);
+|     66  YRS81 = 1*(YRS=1981);
+|     67  YRS82 = 1*(YRS=1982);
+|     68  YRS83 = 1*(YRS=1983);
+|     69  YRS84 = 1*(YRS=1984);
+|     70  YRS85 = 1*(YRS=1985);
+|     71  YRS86 = 1*(YRS=1986);
+|     72  YRS87 = 1*(YRS=1987);
+|     73  YRS88 = 1*(YRS=1988);
+|     74  YRS89 = 1*(YRS=1989);
+|     75  YRS90 = 1*(YRS=1990);
+|     76  YRS91 = 1*(YRS=1991);
+|     77  YRS92 = 1*(YRS=1992);
+|     78  YRS93 = 1*(YRS=1993);
+|     79  YRS94 = 1*(YRS=1994);
+|     80  YRS95 = 1*(YRS=1995);
+|     81  YRS96 = 1*(YRS=1996);
+|     82  YRS97 = 1*(YRS=1997);
+|     83  YRS98 = 1*(YRS=1998);
+|     84  YRS99 = 1*(YRS=1999);
+|     85  YRS00 = 1*(YRS=2000);
+|     86  YRS01 = 1*(YRS=2001);
+|     87  YRS02 = 1*(YRS=2002);
+|     88
+|     88
+|     88
+|     88
+|     88
+|     88
+|     88  ? ASSIGN PER CAPITA INCOME CODES
+|     88
+|     88  SMPL 1,5511; SMPLIF 1*(NAM=111 ); INCCODE =1 ;
+|     91  SMPL 1,5511; SMPLIF 1*(NAM=112 ); INCCODE =1 ;
+|     94  SMPL 1,5511; SMPLIF 1*(NAM=122 ); INCCODE =1 ;
+|     97  SMPL 1,5511; SMPLIF 1*(NAM=124 ); INCCODE =1 ;
+|    100  SMPL 1,5511; SMPLIF 1*(NAM=128 ); INCCODE =1 ;
+|    103  SMPL 1,5511; SMPLIF 1*(NAM=132 ); INCCODE =1 ;
+|    106  SMPL 1,5511; SMPLIF 1*(NAM=134 ); INCCODE =1 ;
+|    109  SMPL 1,5511; SMPLIF 1*(NAM=136 ); INCCODE =1 ;
+|    112  SMPL 1,5511; SMPLIF 1*(NAM=137 ); INCCODE =1 ;
+|    115  SMPL 1,5511; SMPLIF 1*(NAM=138 ); INCCODE =1 ;
+|    118  SMPL 1,5511; SMPLIF 1*(NAM=142 ); INCCODE =1 ;
+|    121  SMPL 1,5511; SMPLIF 1*(NAM=144 ); INCCODE =1 ;
+|    124  SMPL 1,5511; SMPLIF 1*(NAM=146 ); INCCODE =1 ;
+|    127  SMPL 1,5511; SMPLIF 1*(NAM=156 ); INCCODE =1 ;
+|    130  SMPL 1,5511; SMPLIF 1*(NAM=158 ); INCCODE =1 ;
+|    133  SMPL 1,5511; SMPLIF 1*(NAM=172 ); INCCODE =1 ;
+|    136  SMPL 1,5511; SMPLIF 1*(NAM=174 ); INCCODE =1 ;
+|    139  SMPL 1,5511; SMPLIF 1*(NAM=176 ); INCCODE =1 ;
+|    142  SMPL 1,5511; SMPLIF 1*(NAM=178 ); INCCODE =1 ;
+|    145  SMPL 1,5511; SMPLIF 1*(NAM=181 ); INCCODE =2 ;
+|    148  SMPL 1,5511; SMPLIF 1*(NAM=182 ); INCCODE =1 ;
+|    151  SMPL 1,5511; SMPLIF 1*(NAM=184 ); INCCODE =1 ;
+|    154  SMPL 1,5511; SMPLIF 1*(NAM=186 ); INCCODE =3 ;
+|    157  SMPL 1,5511; SMPLIF 1*(NAM=193 ); INCCODE =1 ;
+|    160  SMPL 1,5511; SMPLIF 1*(NAM=196 ); INCCODE =1 ;
+|    163  SMPL 1,5511; SMPLIF 1*(NAM=199 ); INCCODE =2 ;
+|    166  SMPL 1,5511; SMPLIF 1*(NAM=213 ); INCCODE =2 ;
+|    169  SMPL 1,5511; SMPLIF 1*(NAM=218 ); INCCODE =3 ;
+|    172  SMPL 1,5511; SMPLIF 1*(NAM=223 ); INCCODE =2 ;
+|    175  SMPL 1,5511; SMPLIF 1*(NAM=228 ); INCCODE =2 ;
+|    178  SMPL 1,5511; SMPLIF 1*(NAM=233 ); INCCODE =3 ;
+|    181  SMPL 1,5511; SMPLIF 1*(NAM=238 ); INCCODE =3 ;
+|    184  SMPL 1,5511; SMPLIF 1*(NAM=243 ); INCCODE =3 ;
+|    187  SMPL 1,5511; SMPLIF 1*(NAM=248 ); INCCODE =3 ;
+|    190  SMPL 1,5511; SMPLIF 1*(NAM=253 ); INCCODE =3 ;
+|    193  SMPL 1,5511; SMPLIF 1*(NAM=258 ); INCCODE =3 ;
+|    196  SMPL 1,5511; SMPLIF 1*(NAM=263 ); INCCODE =4 ;
+|    199  SMPL 1,5511; SMPLIF 1*(NAM=268 ); INCCODE =3 ;
+|    202  SMPL 1,5511; SMPLIF 1*(NAM=273 ); INCCODE =2 ;
+|    205  SMPL 1,5511; SMPLIF 1*(NAM=278 ); INCCODE =4 ;
+|    208  SMPL 1,5511; SMPLIF 1*(NAM=283 ); INCCODE =2 ;
+|    211  SMPL 1,5511; SMPLIF 1*(NAM=288 ); INCCODE =3 ;
+|    214  SMPL 1,5511; SMPLIF 1*(NAM=293 ); INCCODE =3 ;
+|    217  SMPL 1,5511; SMPLIF 1*(NAM=298 ); INCCODE =2 ;
+|    220  SMPL 1,5511; SMPLIF 1*(NAM=299 ); INCCODE =2 ;
+|    223  SMPL 1,5511; SMPLIF 1*(NAM=311 ); INCCODE =2 ;
+|    226  SMPL 1,5511; SMPLIF 1*(NAM=313 ); INCCODE =1 ;
+|    229  SMPL 1,5511; SMPLIF 1*(NAM=316 ); INCCODE =2 ;
+|    232  SMPL 1,5511; SMPLIF 1*(NAM=321 ); INCCODE =3 ;
+|    235  SMPL 1,5511; SMPLIF 1*(NAM=328 ); INCCODE =2 ;
+|    238  SMPL 1,5511; SMPLIF 1*(NAM=336 ); INCCODE =3 ;
+|    241  SMPL 1,5511; SMPLIF 1*(NAM=339 ); INCCODE =3 ;
+|    244  SMPL 1,5511; SMPLIF 1*(NAM=343 ); INCCODE =3 ;
+|    247  SMPL 1,5511; SMPLIF 1*(NAM=353 ); INCCODE =1 ;
+|    250  SMPL 1,5511; SMPLIF 1*(NAM=362 ); INCCODE =2 ;
+|    253  SMPL 1,5511; SMPLIF 1*(NAM=364 ); INCCODE =3 ;
+|    256  SMPL 1,5511; SMPLIF 1*(NAM=366 ); INCCODE =3 ;
+|    259  SMPL 1,5511; SMPLIF 1*(NAM=369 ); INCCODE =2 ;
+|    262  SMPL 1,5511; SMPLIF 1*(NAM=419 ); INCCODE =2 ;
+|    265  SMPL 1,5511; SMPLIF 1*(NAM=423 ); INCCODE =1 ;
+|    268  SMPL 1,5511; SMPLIF 1*(NAM=429 ); INCCODE =3 ;
+|    271  SMPL 1,5511; SMPLIF 1*(NAM=433 ); INCCODE =3 ;
+|    274  SMPL 1,5511; SMPLIF 1*(NAM=436 ); INCCODE =1 ;
+|    277  SMPL 1,5511; SMPLIF 1*(NAM=439 ); INCCODE =3 ;
+|    280  SMPL 1,5511; SMPLIF 1*(NAM=443 ); INCCODE =1 ;
+|    283  SMPL 1,5511; SMPLIF 1*(NAM=446 ); INCCODE =2 ;
+|    286  SMPL 1,5511; SMPLIF 1*(NAM=449 ); INCCODE =2 ;
+|    289  SMPL 1,5511; SMPLIF 1*(NAM=453 ); INCCODE =1 ;
+|    292  SMPL 1,5511; SMPLIF 1*(NAM=463 ); INCCODE =3 ;
+|    295  SMPL 1,5511; SMPLIF 1*(NAM=466 ); INCCODE =1 ;
+|    298  SMPL 1,5511; SMPLIF 1*(NAM=469 ); INCCODE =3 ;
+|    301  SMPL 1,5511; SMPLIF 1*(NAM=512 ); INCCODE =4 ;
+|    304  SMPL 1,5511; SMPLIF 1*(NAM=513 ); INCCODE =4 ;
+|    307  SMPL 1,5511; SMPLIF 1*(NAM=518 ); INCCODE =4 ;
+|    310  SMPL 1,5511; SMPLIF 1*(NAM=524 ); INCCODE =3 ;
+|    313  SMPL 1,5511; SMPLIF 1*(NAM=532 ); INCCODE =1 ;
+|    316  SMPL 1,5511; SMPLIF 1*(NAM=534 ); INCCODE =4 ;
+|    319  SMPL 1,5511; SMPLIF 1*(NAM=536 ); INCCODE =4 ;
+|    322  SMPL 1,5511; SMPLIF 1*(NAM=542 ); INCCODE =4 ;
+|    325  SMPL 1,5511; SMPLIF 1*(NAM=544 ); INCCODE =4 ;
+|    328  SMPL 1,5511; SMPLIF 1*(NAM=548 ); INCCODE =2 ;
+|    331  SMPL 1,5511; SMPLIF 1*(NAM=556 ); INCCODE =3 ;
+|    334  SMPL 1,5511; SMPLIF 1*(NAM=558 ); INCCODE =4 ;
+|    337  SMPL 1,5511; SMPLIF 1*(NAM=564 ); INCCODE =4 ;
+|    340  SMPL 1,5511; SMPLIF 1*(NAM=566 ); INCCODE =3 ;
+|    343  SMPL 1,5511; SMPLIF 1*(NAM=576 ); INCCODE =1 ;
+|    346  SMPL 1,5511; SMPLIF 1*(NAM=578 ); INCCODE =3 ;
+|    349  SMPL 1,5511; SMPLIF 1*(NAM=582 ); INCCODE =4 ;
+|    352  SMPL 1,5511; SMPLIF 1*(NAM=611 ); INCCODE =3 ;
+|    355  SMPL 1,5511; SMPLIF 1*(NAM=612 ); INCCODE =3 ;
+|    358  SMPL 1,5511; SMPLIF 1*(NAM=616 ); INCCODE =2 ;
+|    361  SMPL 1,5511; SMPLIF 1*(NAM=618 ); INCCODE =4 ;
+|    364  SMPL 1,5511; SMPLIF 1*(NAM=622 ); INCCODE =4 ;
+|    367  SMPL 1,5511; SMPLIF 1*(NAM=624 ); INCCODE =3 ;
+|    370  SMPL 1,5511; SMPLIF 1*(NAM=626 ); INCCODE =4 ;
+|    373  SMPL 1,5511; SMPLIF 1*(NAM=628 ); INCCODE =4 ;
+|    376  SMPL 1,5511; SMPLIF 1*(NAM=632 ); INCCODE =4 ;
+|    379  SMPL 1,5511; SMPLIF 1*(NAM=634 ); INCCODE =4 ;
+|    382  SMPL 1,5511; SMPLIF 1*(NAM=636 ); INCCODE =4 ;
+|    385  SMPL 1,5511; SMPLIF 1*(NAM=638 ); INCCODE =4 ;
+|    388  SMPL 1,5511; SMPLIF 1*(NAM=642 ); INCCODE =3 ;
+|    391  SMPL 1,5511; SMPLIF 1*(NAM=644 ); INCCODE =4 ;
+|    394  SMPL 1,5511; SMPLIF 1*(NAM=646 ); INCCODE =2 ;
+|    397  SMPL 1,5511; SMPLIF 1*(NAM=648 ); INCCODE =4 ;
+|    400  SMPL 1,5511; SMPLIF 1*(NAM=652 ); INCCODE =4 ;
+|    403  SMPL 1,5511; SMPLIF 1*(NAM=654 ); INCCODE =4 ;
+|    406  SMPL 1,5511; SMPLIF 1*(NAM=656 ); INCCODE =4 ;
+|    409  SMPL 1,5511; SMPLIF 1*(NAM=662 ); INCCODE =4 ;
+|    412  SMPL 1,5511; SMPLIF 1*(NAM=664 ); INCCODE =4 ;
+|    415  SMPL 1,5511; SMPLIF 1*(NAM=666 ); INCCODE =4 ;
+|    418  SMPL 1,5511; SMPLIF 1*(NAM=668 ); INCCODE =4 ;
+|    421  SMPL 1,5511; SMPLIF 1*(NAM=672 ); INCCODE =2 ;
+|    424  SMPL 1,5511; SMPLIF 1*(NAM=674 ); INCCODE =4 ;
+|    427  SMPL 1,5511; SMPLIF 1*(NAM=676 ); INCCODE =4 ;
+|    430  SMPL 1,5511; SMPLIF 1*(NAM=678 ); INCCODE =4 ;
+|    433  SMPL 1,5511; SMPLIF 1*(NAM=682 ); INCCODE =4 ;
+|    436  SMPL 1,5511; SMPLIF 1*(NAM=684 ); INCCODE =2 ;
+|    439  SMPL 1,5511; SMPLIF 1*(NAM=686 ); INCCODE =3 ;
+|    442  SMPL 1,5511; SMPLIF 1*(NAM=688 ); INCCODE =4 ;
+|    445  SMPL 1,5511; SMPLIF 1*(NAM=692 ); INCCODE =4 ;
+|    448  SMPL 1,5511; SMPLIF 1*(NAM=694 ); INCCODE =4 ;
+|    451  SMPL 1,5511; SMPLIF 1*(NAM=698 ); INCCODE =4 ;
+|    454  SMPL 1,5511; SMPLIF 1*(NAM=714 ); INCCODE =4 ;
+|    457  SMPL 1,5511; SMPLIF 1*(NAM=716 ); INCCODE =4 ;
+|    460  SMPL 1,5511; SMPLIF 1*(NAM=718 ); INCCODE =2 ;
+|    463  SMPL 1,5511; SMPLIF 1*(NAM=722 ); INCCODE =4 ;
+|    466  SMPL 1,5511; SMPLIF 1*(NAM=724 ); INCCODE =4 ;
+|    469  SMPL 1,5511; SMPLIF 1*(NAM=726 ); INCCODE =4 ;
+|    472  SMPL 1,5511; SMPLIF 1*(NAM=732 ); INCCODE =4 ;
+|    475  SMPL 1,5511; SMPLIF 1*(NAM=734 ); INCCODE =3 ;
+|    478  SMPL 1,5511; SMPLIF 1*(NAM=738 ); INCCODE =4 ;
+|    481  SMPL 1,5511; SMPLIF 1*(NAM=742 ); INCCODE =4 ;
+|    484  SMPL 1,5511; SMPLIF 1*(NAM=744 ); INCCODE =3 ;
+|    487  SMPL 1,5511; SMPLIF 1*(NAM=746 ); INCCODE =4 ;
+|    490  SMPL 1,5511; SMPLIF 1*(NAM=748 ); INCCODE =4 ;
+|    493  SMPL 1,5511; SMPLIF 1*(NAM=754 ); INCCODE =4 ;
+|    496  SMPL 1,5511; SMPLIF 1*(NAM=813 ); INCCODE =4 ;
+|    499  SMPL 1,5511; SMPLIF 1*(NAM=819 ); INCCODE =3 ;
+|    502  SMPL 1,5511; SMPLIF 1*(NAM=846 ); INCCODE =3 ;
+|    505  SMPL 1,5511; SMPLIF 1*(NAM=853 ); INCCODE =3 ;
+|    508  SMPL 1,5511; SMPLIF 1*(NAM=862 ); INCCODE =3 ;
+|    511  SMPL 1,5511; SMPLIF 1*(NAM=866 ); INCCODE =3 ;
+|    514  SMPL 1,5511; SMPLIF 1*(NAM=911 ); INCCODE =4 ;
+|    517  SMPL 1,5511; SMPLIF 1*(NAM=912 ); INCCODE =4 ;
+|    520  SMPL 1,5511; SMPLIF 1*(NAM=913 ); INCCODE =3 ;
+|    523  SMPL 1,5511; SMPLIF 1*(NAM=914 ); INCCODE =3 ;
+|    526  SMPL 1,5511; SMPLIF 1*(NAM=915 ); INCCODE =4 ;
+|    529  SMPL 1,5511; SMPLIF 1*(NAM=916 ); INCCODE =3 ;
+|    532  SMPL 1,5511; SMPLIF 1*(NAM=917 ); INCCODE =4 ;
+|    535  SMPL 1,5511; SMPLIF 1*(NAM=918 ); INCCODE =3 ;
+|    538  SMPL 1,5511; SMPLIF 1*(NAM=921 ); INCCODE =4 ;
+|    541  SMPL 1,5511; SMPLIF 1*(NAM=922 ); INCCODE =3 ;
+|    544  SMPL 1,5511; SMPLIF 1*(NAM=923 ); INCCODE =4 ;
+|    547  SMPL 1,5511; SMPLIF 1*(NAM=924 ); INCCODE =3 ;
+|    550  SMPL 1,5511; SMPLIF 1*(NAM=925 ); INCCODE =4 ;
+|    553  SMPL 1,5511; SMPLIF 1*(NAM=926 ); INCCODE =4 ;
+|    556  SMPL 1,5511; SMPLIF 1*(NAM=927 ); INCCODE =4 ;
+|    559  SMPL 1,5511; SMPLIF 1*(NAM=935 ); INCCODE =2 ;
+|    562  SMPL 1,5511; SMPLIF 1*(NAM=936 ); INCCODE =2 ;
+|    565  SMPL 1,5511; SMPLIF 1*(NAM=939 ); INCCODE =2 ;
+|    568  SMPL 1,5511; SMPLIF 1*(NAM=941 ); INCCODE =3 ;
+|    571  SMPL 1,5511; SMPLIF 1*(NAM=944 ); INCCODE =2 ;
+|    574  SMPL 1,5511; SMPLIF 1*(NAM=946 ); INCCODE =3 ;
+|    577  SMPL 1,5511; SMPLIF 1*(NAM=961 ); INCCODE =1 ;
+|    580  SMPL 1,5511; SMPLIF 1*(NAM=963 ); INCCODE =3 ;
+|    583  SMPL 1,5511; SMPLIF 1*(NAM=964 ); INCCODE =2 ;
+|    586  SMPL 1,5511; SMPLIF 1*(NAM=968 ); INCCODE =3 ;
+|    589
+|    589  SMPL 1,5511;
+|    590
+|    590  UIC = 1*(INCCODE=1);
+|    591  UMIC = 1*(INCCODE=2);
+|    592  LMIC = 1*(INCCODE=3);
+|    593  LIC = 1*(INCCODE=4);
+|    594
+|    594  UUMIC = 1*((UIC=1)|(UMIC=1));
+|    595  LLMIC = 1*((LMIC=1)|(LIC=1));
+|    596
+|    596
+|    596
+|    596
+|    596
+|    596
+|    596
+|    596
+|    596  OUT Cbrdata;
+|    597  KEEP
+|    597   UIC
+|    597   UMIC
+|    597   LMIC
+|    597   LIC
+|    597   UUMIC
+|    597   LLMIC
+|    597   XPORT3
+|    597   Dist1
+|    597   Dist2
+|    597   WDist1
+|    597   WDist2
+|    597   RDist1
+|    597   RDist2
+|    597   YRS70
+|    597   YRS71
+|    597   YRS72
+|    597   YRS73
+|    597   YRS74
+|    597   YRS75
+|    597   YRS76
+|    597   YRS77
+|    597   YRS78
+|    597   YRS79
+|    597   YRS80
+|    597   YRS81
+|    597   YRS82
+|    597   YRS83
+|    597   YRS84
+|    597   YRS85
+|    597   YRS86
+|    597   YRS87
+|    597   YRS88
+|    597   YRS89
+|    597   YRS90
+|    597   YRS91
+|    597   YRS92
+|    597   YRS93
+|    597   YRS94
+|    597   YRS95
+|    597   YRS96
+|    597   YRS97
+|    597   YRS98
+|    597   YRS99
+|    597   YRS00
+|    597   YRS01
+|    597   YRS02
+|    597    ;
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598
+|    598  DBLIST Cbrdata;
+         EXECUTION
+*******************************************************************************
+
+Current sample:  1 to 5511
+
+*** WARNING in command 6 Procedure GENR: Missing values for series 
+    ====> CPIG: 298
+
+
+*** WARNING in command 7 Procedure GENR: Missing values for series 
+    ====> BMG: 439
+
+
+Current sample:  1 to 5511
+
+*** WARNING in command 18 Procedure GENR: Missing values for series 
+    ====> CURCON: 835
+
+
+*** WARNING in command 19 Procedure GENR: Missing values for series 
+    ====> KAPCON: 813
+
+
+Current sample:  1 to 5511
+
+*** WARNING in command 24 Procedure GENR: Missing values for series 
+    ====> DEJUREA: 765
+
+
+*** WARNING in command 25 Procedure GENR: Missing values for series 
+    ====> DEJUREA: 765
+
+
+*** WARNING in command 26 Procedure GENR: Missing values for series 
+    ====> DEJUREA: 765
+
+
+*** WARNING in command 27 Procedure GENR: Missing values for series 
+    ====> DEJUREB: 765
+
+
+*** WARNING in command 28 Procedure GENR: Missing values for series 
+    ====> DEJUREB: 765
+
+
+*** WARNING in command 29 Procedure GENR: Missing values for series 
+    ====> DEJUREB: 765
+
+*** NOTE:  Further warning messages for missing values are suppressed by 
+OPTIONS LIMWMISS=n;  Current setting ==>   10
+
+Current sample:  1 to 5511
+
+Current sample:  1 to 5511
+
+Current sample:  1 to 33
+
+Current sample:  1 to 5511
+
+Current sample:  34 to 66
+
+Current sample:  1 to 5511
+
+Current sample:  67 to 99
+
+Current sample:  1 to 5511
+
+Current sample:  100 to 132
+
+Current sample:  1 to 5511
+
+Current sample:  133 to 165
+
+Current sample:  1 to 5511
+
+Current sample:  166 to 198
+
+Current sample:  1 to 5511
+
+Current sample:  199 to 231
+
+Current sample:  1 to 5511
+
+Current sample:  232 to 264
+
+Current sample:  1 to 5511
+
+Current sample:  265 to 297
+
+Current sample:  1 to 5511
+
+Current sample:  298 to 330
+
+Current sample:  1 to 5511
+
+Current sample:  331 to 363
+
+Current sample:  1 to 5511
+
+Current sample:  364 to 396
+
+Current sample:  1 to 5511
+
+Current sample:  397 to 429
+
+Current sample:  1 to 5511
+
+Current sample:  430 to 462
+
+Current sample:  1 to 5511
+
+Current sample:  463 to 495
+
+Current sample:  1 to 5511
+
+Current sample:  496 to 528
+
+Current sample:  1 to 5511
+
+Current sample:  529 to 561
+
+Current sample:  1 to 5511
+
+Current sample:  562 to 594
+
+Current sample:  1 to 5511
+
+Current sample:  595 to 627
+
+Current sample:  1 to 5511
+
+Current sample:  628 to 660
+
+Current sample:  1 to 5511
+
+Current sample:  661 to 693
+
+Current sample:  1 to 5511
+
+Current sample:  694 to 726
+
+Current sample:  1 to 5511
+
+Current sample:  727 to 759
+
+Current sample:  1 to 5511
+
+Current sample:  760 to 792
+
+Current sample:  1 to 5511
+
+Current sample:  793 to 825
+
+Current sample:  1 to 5511
+
+Current sample:  826 to 858
+
+Current sample:  1 to 5511
+
+Current sample:  859 to 891
+
+Current sample:  1 to 5511
+
+Current sample:  892 to 924
+
+Current sample:  1 to 5511
+
+Current sample:  925 to 957
+
+Current sample:  1 to 5511
+
+Current sample:  958 to 990
+
+Current sample:  1 to 5511
+
+Current sample:  991 to 1023
+
+Current sample:  1 to 5511
+
+Current sample:  1024 to 1056
+
+Current sample:  1 to 5511
+
+Current sample:  1057 to 1089
+
+Current sample:  1 to 5511
+
+Current sample:  1090 to 1122
+
+Current sample:  1 to 5511
+
+Current sample:  1123 to 1155
+
+Current sample:  1 to 5511
+
+Current sample:  1156 to 1188
+
+Current sample:  1 to 5511
+
+Current sample:  1189 to 1221
+
+Current sample:  1 to 5511
+
+Current sample:  1222 to 1254
+
+Current sample:  1 to 5511
+
+Current sample:  1255 to 1287
+
+Current sample:  1 to 5511
+
+Current sample:  1288 to 1320
+
+Current sample:  1 to 5511
+
+Current sample:  1321 to 1353
+
+Current sample:  1 to 5511
+
+Current sample:  1354 to 1386
+
+Current sample:  1 to 5511
+
+Current sample:  1387 to 1419
+
+Current sample:  1 to 5511
+
+Current sample:  1420 to 1452
+
+Current sample:  1 to 5511
+
+Current sample:  1453 to 1485
+
+Current sample:  1 to 5511
+
+Current sample:  1486 to 1518
+
+Current sample:  1 to 5511
+
+Current sample:  1519 to 1551
+
+Current sample:  1 to 5511
+
+Current sample:  1552 to 1584
+
+Current sample:  1 to 5511
+
+Current sample:  1585 to 1617
+
+Current sample:  1 to 5511
+
+Current sample:  1618 to 1650
+
+Current sample:  1 to 5511
+
+Current sample:  1651 to 1683
+
+Current sample:  1 to 5511
+
+Current sample:  1684 to 1716
+
+Current sample:  1 to 5511
+
+Current sample:  1717 to 1749
+
+Current sample:  1 to 5511
+
+Current sample:  1750 to 1782
+
+Current sample:  1 to 5511
+
+Current sample:  1783 to 1815
+
+Current sample:  1 to 5511
+
+Current sample:  1816 to 1848
+
+Current sample:  1 to 5511
+
+Current sample:  1849 to 1881
+
+Current sample:  1 to 5511
+
+Current sample:  1882 to 1914
+
+Current sample:  1 to 5511
+
+Current sample:  1915 to 1947
+
+Current sample:  1 to 5511
+
+Current sample:  1948 to 1980
+
+Current sample:  1 to 5511
+
+Current sample:  1981 to 2013
+
+Current sample:  1 to 5511
+
+Current sample:  2014 to 2046
+
+Current sample:  1 to 5511
+
+Current sample:  2047 to 2079
+
+Current sample:  1 to 5511
+
+Current sample:  2080 to 2112
+
+Current sample:  1 to 5511
+
+Current sample:  2113 to 2145
+
+Current sample:  1 to 5511
+
+Current sample:  2146 to 2178
+
+Current sample:  1 to 5511
+
+Current sample:  2179 to 2211
+
+Current sample:  1 to 5511
+
+Current sample:  2212 to 2244
+
+Current sample:  1 to 5511
+
+Current sample:  2245 to 2277
+
+Current sample:  1 to 5511
+
+Current sample:  2278 to 2310
+
+Current sample:  1 to 5511
+
+Current sample:  2311 to 2343
+
+Current sample:  1 to 5511
+
+Current sample:  2344 to 2376
+
+Current sample:  1 to 5511
+
+Current sample:  2377 to 2409
+
+Current sample:  1 to 5511
+
+Current sample:  2410 to 2442
+
+Current sample:  1 to 5511
+
+Current sample:  2443 to 2475
+
+Current sample:  1 to 5511
+
+Current sample:  2476 to 2508
+
+Current sample:  1 to 5511
+
+Current sample:  2509 to 2541
+
+Current sample:  1 to 5511
+
+Current sample:  2542 to 2574
+
+Current sample:  1 to 5511
+
+Current sample:  2575 to 2607
+
+Current sample:  1 to 5511
+
+Current sample:  2608 to 2640
+
+Current sample:  1 to 5511
+
+Current sample:  2641 to 2673
+
+Current sample:  1 to 5511
+
+Current sample:  2674 to 2706
+
+Current sample:  1 to 5511
+
+Current sample:  2707 to 2739
+
+Current sample:  1 to 5511
+
+Current sample:  2740 to 2772
+
+Current sample:  1 to 5511
+
+Current sample:  2773 to 2805
+
+Current sample:  1 to 5511
+
+Current sample:  2806 to 2838
+
+Current sample:  1 to 5511
+
+Current sample:  2839 to 2871
+
+Current sample:  1 to 5511
+
+Current sample:  2872 to 2904
+
+Current sample:  1 to 5511
+
+Current sample:  2905 to 2937
+
+Current sample:  1 to 5511
+
+Current sample:  2938 to 2970
+
+Current sample:  1 to 5511
+
+Current sample:  2971 to 3003
+
+Current sample:  1 to 5511
+
+Current sample:  3004 to 3036
+
+Current sample:  1 to 5511
+
+Current sample:  3037 to 3069
+
+Current sample:  1 to 5511
+
+Current sample:  3070 to 3102
+
+Current sample:  1 to 5511
+
+Current sample:  3103 to 3135
+
+Current sample:  1 to 5511
+
+Current sample:  3136 to 3168
+
+Current sample:  1 to 5511
+
+Current sample:  3169 to 3201
+
+Current sample:  1 to 5511
+
+Current sample:  3202 to 3234
+
+Current sample:  1 to 5511
+
+Current sample:  3235 to 3267
+
+Current sample:  1 to 5511
+
+Current sample:  3268 to 3300
+
+Current sample:  1 to 5511
+
+Current sample:  3301 to 3333
+
+Current sample:  1 to 5511
+
+Current sample:  3334 to 3366
+
+Current sample:  1 to 5511
+
+Current sample:  3367 to 3399
+
+Current sample:  1 to 5511
+
+Current sample:  3400 to 3432
+
+Current sample:  1 to 5511
+
+Current sample:  3433 to 3465
+
+Current sample:  1 to 5511
+
+Current sample:  3466 to 3498
+
+Current sample:  1 to 5511
+
+Current sample:  3499 to 3531
+
+Current sample:  1 to 5511
+
+Current sample:  3532 to 3564
+
+Current sample:  1 to 5511
+
+Current sample:  3565 to 3597
+
+Current sample:  1 to 5511
+
+Current sample:  3598 to 3630
+
+Current sample:  1 to 5511
+
+Current sample:  3631 to 3663
+
+Current sample:  1 to 5511
+
+Current sample:  3664 to 3696
+
+Current sample:  1 to 5511
+
+Current sample:  3697 to 3729
+
+Current sample:  1 to 5511
+
+Current sample:  3730 to 3762
+
+Current sample:  1 to 5511
+
+Current sample:  3763 to 3795
+
+Current sample:  1 to 5511
+
+Current sample:  3796 to 3828
+
+Current sample:  1 to 5511
+
+Current sample:  3829 to 3861
+
+Current sample:  1 to 5511
+
+Current sample:  3862 to 3894
+
+Current sample:  1 to 5511
+
+Current sample:  3895 to 3927
+
+Current sample:  1 to 5511
+
+Current sample:  3928 to 3960
+
+Current sample:  1 to 5511
+
+Current sample:  3961 to 3993
+
+Current sample:  1 to 5511
+
+Current sample:  3994 to 4026
+
+Current sample:  1 to 5511
+
+Current sample:  4027 to 4059
+
+Current sample:  1 to 5511
+
+Current sample:  4060 to 4092
+
+Current sample:  1 to 5511
+
+Current sample:  4093 to 4125
+
+Current sample:  1 to 5511
+
+Current sample:  4126 to 4158
+
+Current sample:  1 to 5511
+
+Current sample:  4159 to 4191
+
+Current sample:  1 to 5511
+
+Current sample:  4192 to 4224
+
+Current sample:  1 to 5511
+
+Current sample:  4225 to 4257
+
+Current sample:  1 to 5511
+
+Current sample:  4258 to 4290
+
+Current sample:  1 to 5511
+
+Current sample:  4291 to 4323
+
+Current sample:  1 to 5511
+
+Current sample:  4324 to 4356
+
+Current sample:  1 to 5511
+
+Current sample:  4357 to 4389
+
+Current sample:  1 to 5511
+
+Current sample:  4390 to 4422
+
+Current sample:  1 to 5511
+
+Current sample:  4423 to 4455
+
+Current sample:  1 to 5511
+
+Current sample:  4456 to 4488
+
+Current sample:  1 to 5511
+
+Current sample:  4489 to 4521
+
+Current sample:  1 to 5511
+
+Current sample:  4522 to 4554
+
+Current sample:  1 to 5511
+
+Current sample:  4555 to 4587
+
+Current sample:  1 to 5511
+
+Current sample:  4588 to 4620
+
+Current sample:  1 to 5511
+
+Current sample:  4621 to 4653
+
+Current sample:  1 to 5511
+
+Current sample:  4654 to 4686
+
+Current sample:  1 to 5511
+
+Current sample:  4687 to 4719
+
+Current sample:  1 to 5511
+
+Current sample:  4720 to 4752
+
+Current sample:  1 to 5511
+
+Current sample:  4753 to 4785
+
+Current sample:  1 to 5511
+
+Current sample:  4786 to 4818
+
+Current sample:  1 to 5511
+
+Current sample:  4819 to 4851
+
+Current sample:  1 to 5511
+
+Current sample:  4852 to 4884
+
+Current sample:  1 to 5511
+
+Current sample:  4885 to 4917
+
+Current sample:  1 to 5511
+
+Current sample:  4918 to 4950
+
+Current sample:  1 to 5511
+
+Current sample:  4951 to 4983
+
+Current sample:  1 to 5511
+
+Current sample:  4984 to 5016
+
+Current sample:  1 to 5511
+
+Current sample:  5017 to 5049
+
+Current sample:  1 to 5511
+
+Current sample:  5050 to 5082
+
+Current sample:  1 to 5511
+
+Current sample:  5083 to 5115
+
+Current sample:  1 to 5511
+
+Current sample:  5116 to 5148
+
+Current sample:  1 to 5511
+
+Current sample:  5149 to 5181
+
+Current sample:  1 to 5511
+
+Current sample:  5182 to 5214
+
+Current sample:  1 to 5511
+
+Current sample:  5215 to 5247
+
+Current sample:  1 to 5511
+
+Current sample:  5248 to 5280
+
+Current sample:  1 to 5511
+
+Current sample:  5281 to 5313
+
+Current sample:  1 to 5511
+
+Current sample:  5314 to 5346
+
+Current sample:  1 to 5511
+
+Current sample:  5347 to 5379
+
+Current sample:  1 to 5511
+
+Current sample:  5380 to 5412
+
+Current sample:  1 to 5511
+
+Current sample:  5413 to 5445
+
+Current sample:  1 to 5511
+
+Current sample:  5446 to 5478
+
+Current sample:  1 to 5511
+
+Current sample:  5479 to 5511
+
+Current sample:  1 to 5511
+
+Contents of Databank  CBRDATA.TLB
+
+Class    Name     Description
+-----    ----     -----------
+
+SERIES   NGDP     5511 obs. from  1-5511, no frequency
+         NGDP_R   5511 obs. from  1-5511, no frequency
+         NGDPD    5511 obs. from  1-5511, no frequency
+         PPPPC    5511 obs. from  1-5511, no frequency
+         BCA      5511 obs. from  1-5511, no frequency
+         GCB      5511 obs. from  1-5511, no frequency
+         GGB      5511 obs. from  1-5511, no frequency
+         NX       5511 obs. from  1-5511, no frequency
+         NM       5511 obs. from  1-5511, no frequency
+         NFI      5511 obs. from  1-5511, no frequency
+         LP       5511 obs. from  1-5511, no frequency
+         TXG_R    5511 obs. from  1-5511, no frequency
+         TX_R     5511 obs. from  1-5511, no frequency
+         TMG_R    5511 obs. from  1-5511, no frequency
+         TM_R     5511 obs. from  1-5511, no frequency
+         FMB      5511 obs. from  1-5511, no frequency
+         FIDR     5511 obs. from  1-5511, no frequency
+         BFRA     5511 obs. from  1-5511, no frequency
+         BRASS    5511 obs. from  1-5511, no frequency
+         PCPI     5511 obs. from  1-5511, no frequency
+         ENDA     5511 obs. from  1-5511, no frequency
+         EDNA     5511 obs. from  1-5511, no frequency
+         NGS      5511 obs. from  1-5511, no frequency
+         NGSP     5511 obs. from  1-5511, no frequency
+         NGSG     5511 obs. from  1-5511, no frequency
+         NCP      5511 obs. from  1-5511, no frequency
+         NCP_R    5511 obs. from  1-5511, no frequency
+         GGENL    5511 obs. from  1-5511, no frequency
+         GGRG     5511 obs. from  1-5511, no frequency
+         TT       5511 obs. from  1-5511, no frequency
+         CPIG     5511 obs. from  1-5511, no frequency
+         GDPG     5511 obs. from  1-5511, no frequency
+         GDPPC    5511 obs. from  1-5511, no frequency
+         GDPPCG   5511 obs. from  1-5511, no frequency
+         BMG      5511 obs. from  1-5511, no frequency
+         IRATE    5511 obs. from  1-5511, no frequency
+         XGDP     5511 obs. from  1-5511, no frequency
+         MGDP     5511 obs. from  1-5511, no frequency
+         XG       5511 obs. from  1-5511, no frequency
+         XGM3     5511 obs. from  1-5511, no frequency
+         MG       5511 obs. from  1-5511, no frequency
+         MGM3     5511 obs. from  1-5511, no frequency
+         POP      5511 obs. from  1-5511, no frequency
+         POPG     5511 obs. from  1-5511, no frequency
+         USGDP    5511 obs. from  1-5511, no frequency
+         CGGDP    5511 obs. from  1-5511, no frequency
+         CGGDPM3  5511 obs. from  1-5511, no frequency
+         GGGDP    5511 obs. from  1-5511, no frequency
+         GGGDPM3  5511 obs. from  1-5511, no frequency
+         TAXGDP   5511 obs. from  1-5511, no frequency
+         TAXGDPM3 5511 obs. from  1-5511, no frequency
+         GAP      5511 obs. from  1-5511, no frequency
+         SAVPGDP  5511 obs. from  1-5511, no frequency
+         SAVGGDP  5511 obs. from  1-5511, no frequency
+         IGDP     5511 obs. from  1-5511, no frequency
+         CAGDP    5511 obs. from  1-5511, no frequency
+         EXCHAOP  5511 obs. from  1-5511, no frequency
+         TTG      5511 obs. from  1-5511, no frequency
+         TTGM3    5511 obs. from  1-5511, no frequency
+         TTGS3    5511 obs. from  1-5511, no frequency
+         POPGM3   5511 obs. from  1-5511, no frequency
+         GDPPCGS3 5511 obs. from  1-5511, no frequency
+         IGDPM3   5511 obs. from  1-5511, no frequency
+         IGDPS3   5511 obs. from  1-5511, no frequency
+         BMGDP    5511 obs. from  1-5511, no frequency
+         BMGDPG   5511 obs. from  1-5511, no frequency
+         BMR      5511 obs. from  1-5511, no frequency
+         BMRG     5511 obs. from  1-5511, no frequency
+         NCPRG    5511 obs. from  1-5511, no frequency
+         NCPRGS3  5511 obs. from  1-5511, no frequency
+         NCGDP    5511 obs. from  1-5511, no frequency
+         NCGDPS3  5511 obs. from  1-5511, no frequency
+         GDPGS3   5511 obs. from  1-5511, no frequency
+         RGDPHP   5511 obs. from  1-5511, no frequency
+         RGDPAVG  5511 obs. from  1-5511, no frequency
+         RGDPFV   5511 obs. from  1-5511, no frequency
+         RGDPFV1  5511 obs. from  1-5511, no frequency
+         RGDPFV2  5511 obs. from  1-5511, no frequency
+         RGDPDV   5511 obs. from  1-5511, no frequency
+         RGDPDVS3 5511 obs. from  1-5511, no frequency
+         DISA     5511 obs. from  1-5511, no frequency
+         DUR1DISA 5511 obs. from  1-5511, no frequency
+         DUR2DISA 5511 obs. from  1-5511, no frequency
+         DUR3DISA 5511 obs. from  1-5511, no frequency
+         SUR1DISA 5511 obs. from  1-5511, no frequency
+         SUR2DISA 5511 obs. from  1-5511, no frequency
+         SUR3DISA 5511 obs. from  1-5511, no frequency
+         DISB     5511 obs. from  1-5511, no frequency
+         DUR1DISB 5511 obs. from  1-5511, no frequency
+         DUR2DISB 5511 obs. from  1-5511, no frequency
+         DUR3DISB 5511 obs. from  1-5511, no frequency
+         SUR1DISB 5511 obs. from  1-5511, no frequency
+         SUR2DISB 5511 obs. from  1-5511, no frequency
+         SUR3DISB 5511 obs. from  1-5511, no frequency
+         DISC     5511 obs. from  1-5511, no frequency
+         DUR1DISC 5511 obs. from  1-5511, no frequency
+         DUR2DISC 5511 obs. from  1-5511, no frequency
+         DUR3DISC 5511 obs. from  1-5511, no frequency
+         SUR1DISC 5511 obs. from  1-5511, no frequency
+         SUR2DISC 5511 obs. from  1-5511, no frequency
+         SUR3DISC 5511 obs. from  1-5511, no frequency
+         NOSCH    5511 obs. from  1-5511, no frequency
+         FRSTSCH1 5511 obs. from  1-5511, no frequency
+         FRSTSCH2 5511 obs. from  1-5511, no frequency
+         SECSCH1  5511 obs. from  1-5511, no frequency
+         SECSCH2  5511 obs. from  1-5511, no frequency
+         THRSCH1  5511 obs. from  1-5511, no frequency
+         THRSCH2  5511 obs. from  1-5511, no frequency
+         AVGYRSCH 5511 obs. from  1-5511, no frequency
+         CBGOV    5511 obs. from  1-5511, no frequency
+         CBTURN5  5511 obs. from  1-5511, no frequency
+         CBTURN10 5511 obs. from  1-5511, no frequency
+         CURCON   5511 obs. from  1-5511, no frequency
+         KAPCON   5511 obs. from  1-5511, no frequency
+         CURCON1  5511 obs. from  1-5511, no frequency
+         CURCON2  5511 obs. from  1-5511, no frequency
+         CURCON3  5511 obs. from  1-5511, no frequency
+         NOCURCON 5511 obs. from  1-5511, no frequency
+         NOKAPCON 5511 obs. from  1-5511, no frequency
+         REGIME   5511 obs. from  1-5511, no frequency
+         DEJUREA  5511 obs. from  1-5511, no frequency
+         DEJUREB  5511 obs. from  1-5511, no frequency
+         JUREPEG  5511 obs. from  1-5511, no frequency
+         JUREINT  5511 obs. from  1-5511, no frequency
+         JUREFLT  5511 obs. from  1-5511, no frequency
+         JURE1    5511 obs. from  1-5511, no frequency
+         JURE2    5511 obs. from  1-5511, no frequency
+         JURE3    5511 obs. from  1-5511, no frequency
+         JURE4    5511 obs. from  1-5511, no frequency
+         JURE5    5511 obs. from  1-5511, no frequency
+         JURE6    5511 obs. from  1-5511, no frequency
+         REG1     5511 obs. from  1-5511, no frequency
+         REG2     5511 obs. from  1-5511, no frequency
+         REG3     5511 obs. from  1-5511, no frequency
+         REG4     5511 obs. from  1-5511, no frequency
+         REG5     5511 obs. from  1-5511, no frequency
+         REG6     5511 obs. from  1-5511, no frequency
+         REG7     5511 obs. from  1-5511, no frequency
+         REG8     5511 obs. from  1-5511, no frequency
+         REG9     5511 obs. from  1-5511, no frequency
+         REG10    5511 obs. from  1-5511, no frequency
+         REG11    5511 obs. from  1-5511, no frequency
+         REG12    5511 obs. from  1-5511, no frequency
+         REG13    5511 obs. from  1-5511, no frequency
+         REG14    5511 obs. from  1-5511, no frequency
+         REG15    5511 obs. from  1-5511, no frequency
+         YRS70    5511 obs. from  1-5511, no frequency
+         YRS71    5511 obs. from  1-5511, no frequency
+         YRS72    5511 obs. from  1-5511, no frequency
+         YRS73    5511 obs. from  1-5511, no frequency
+         YRS74    5511 obs. from  1-5511, no frequency
+         YRS75    5511 obs. from  1-5511, no frequency
+         YRS76    5511 obs. from  1-5511, no frequency
+         YRS77    5511 obs. from  1-5511, no frequency
+         YRS78    5511 obs. from  1-5511, no frequency
+         YRS79    5511 obs. from  1-5511, no frequency
+         YRS80    5511 obs. from  1-5511, no frequency
+         YRS81    5511 obs. from  1-5511, no frequency
+         YRS82    5511 obs. from  1-5511, no frequency
+         YRS83    5511 obs. from  1-5511, no frequency
+         YRS84    5511 obs. from  1-5511, no frequency
+         YRS85    5511 obs. from  1-5511, no frequency
+         YRS86    5511 obs. from  1-5511, no frequency
+         YRS87    5511 obs. from  1-5511, no frequency
+         YRS88    5511 obs. from  1-5511, no frequency
+         YRS89    5511 obs. from  1-5511, no frequency
+         YRS90    5511 obs. from  1-5511, no frequency
+         YRS91    5511 obs. from  1-5511, no frequency
+         YRS92    5511 obs. from  1-5511, no frequency
+         YRS93    5511 obs. from  1-5511, no frequency
+         YRS94    5511 obs. from  1-5511, no frequency
+         YRS95    5511 obs. from  1-5511, no frequency
+         YRS96    5511 obs. from  1-5511, no frequency
+         YRS97    5511 obs. from  1-5511, no frequency
+         YRS98    5511 obs. from  1-5511, no frequency
+         YRS99    5511 obs. from  1-5511, no frequency
+         YRS00    5511 obs. from  1-5511, no frequency
+         YRS01    5511 obs. from  1-5511, no frequency
+         YRS02    5511 obs. from  1-5511, no frequency
+         INCCODE  5511 obs. from  1-5511, no frequency
+         UIC      5511 obs. from  1-5511, no frequency
+         UMIC     5511 obs. from  1-5511, no frequency
+         LMIC     5511 obs. from  1-5511, no frequency
+         LIC      5511 obs. from  1-5511, no frequency
+         UUMIC    5511 obs. from  1-5511, no frequency
+         LLMIC    5511 obs. from  1-5511, no frequency
+         CPIGX    5511 obs. from  1-5511, no frequency
+         BMGX     5511 obs. from  1-5511, no frequency
+         DIST1    5511 obs. from  1-5511, no frequency
+         DIST2    5511 obs. from  1-5511, no frequency
+         WDIST1   5511 obs. from  1-5511, no frequency
+         WDIST2   5511 obs. from  1-5511, no frequency
+         RDIST1   5511 obs. from  1-5511, no frequency
+         RDIST2   5511 obs. from  1-5511, no frequency
+         XPORT3   5511 obs. from  1-5511, no frequency
+         REERAOP  5511 obs. from  1-5511, no frequency
+         GAPREG   5511 obs. from  1-5511, no frequency
+         GDPPCREG 5511 obs. from  1-5511, no frequency
+         WGDPG    5511 obs. from  1-5511, no frequency
+         GAPHPREG 5511 obs. from  1-5511, no frequency
+         XGRESREG 5511 obs. from  1-5511, no frequency
+         NAM      5511 obs. from  1-5511, no frequency
+         YRS      5511 obs. from  1-5511, no frequency
+         BNKSTRT  5511 obs. from  1-5511, no frequency
+         BNKDUR   5511 obs. from  1-5511, no frequency
+         CURSTRT  5511 obs. from  1-5511, no frequency
+         CURDUR   5511 obs. from  1-5511, no frequency
+         LNGDPRHP 5511 obs. from  1-5511, no frequency
+         RGDPHPDV 5511 obs. from  1-5511, no frequency
+         HPDVS3   5511 obs. from  1-5511, no frequency
+
+THIS DATABANK HAS         689 WASTED BLOCKS (      353024 BYTES)
+WHICH COULD BE REMOVED WITH THE  DBCOMP  COMMAND.
+
+
+*******************************************************************************
+
+END OF OUTPUT.
+
+TOTAL NUMBER OF WARNING MESSAGES FOR MISSING VALUES:28
+TOTAL NUMBER OF WARNING MESSAGES:   28
+
+  MEMORY USAGE:    ITEM:    DATA ARRAY  TOTAL MEMORY
+                  UNITS:  (4-BYTE WORDS) (MEGABYTES)
+  MEMORY ALLOCATED         :   5750000      25.0
+  MEMORY ACTUALLY REQUIRED :   4511866      20.1
+  CURRENT VARIABLE STORAGE :   3272690
