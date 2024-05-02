@@ -1,5 +1,36 @@
 # A-Replication-of-Currency-Boards-in-Retrospect-and-Prospect
 
+<ins>Main Data Spreadsheet</ins>
+
+The two main spreadsheets in this paper is IMF's World Economic Outlook (WEO) (April 2024) and International Financial Statistics (IFS) (2023) database. Both spreadsheet are located in the folder "MainSpreadsheet". Other spreadsheet for individual series and their folders are listed below:
+
+| Variable              | Folder/Filename                                               |
+| --------------------- | --------------------------------------------------------------|
+| World GDP growth      | Trade/imf-dm-export-20240420.xlsx                             |
+| Income Level          | List_of_countries.xlsx                                        |
+| Exchange Rate Regime  | Regimes/REGIMETS_2023.xlsx                                    |
+| Sovereign Debt        | SovereignDebt/SOVD-data-from-Schuler.xlsx                     |
+| Central Bank Turnover | Cbturn/CBGOV-data-from-Dreher.xlsx                            |
+| Currency Control      | CURCON-KAPCON/CURCON-data-from-AREAR.xlsx                     |
+| Capital Control       | CURCON-KAPCON/KAPCON-data-from-Chinn-Ito.xlsx                 |
+| Trade Data            | Trade/Trade data from IMF DOTS database 2023Q4                |
+| Banking Crisis        | Crisis/BNKSTRT-data-from-Metrick-Schmelzing-plus-Schuler.xlsx |
+
+<ins>Consolidating spreadsheets</ins>
+
+To consolidate all spreadsheets into 1 main spreadsheet, run the following notebook in order. Duplicated series are taken from WEO database. Then, we fill any missing datapoints with data from IFS database and Wolf et al.'s orinal spreadsheet in order. Some nominal series such as price level and nominal GDP may have some discrepancies, but the growth rate series are reliable.
+
+1. WEO-base.ipynb
+2. IFS-base.ipynb
+3. Wolf-base.ipynb
+4. Combine-excel.ipynb
+
+The consolidated spreadsheet is located in "MainSpreadsheet/CombinedData.xlsx" and is ready for statistical tests. When new data are available, you can use the first three files to create updated spreadsheets.
+
+<ins>Statistical tests</ins>
+
+All tests are done in "Testing.ipynb".
+
 <ins>A Note on the Data</ins>
 
 Wolf et al. (2008) assembled macroeconomic data on more than 160 countries, from 1970 to 2002, mainly from statistics reported to the International Monetary Fund (IMF) by its member countries. Their data included statistics for the currency boards or quasi currency boards of Argentina, Bosnia and Herzegovina, Bulgaria, Djibouti, Estonia, Hong Kong, and Lithuania. Their data also included statistics for the members of the Eastern Caribbean Central Bank (ECCB) that were members of the IMF (Antigua and Barbuda, Dominica, Grenada, St. Lucia, St. Kitts and Nevis, and St. Vincent and the Grenadines). The IMF classifies the ECCB as a currency board even though some other observers do not (Carpenter 2016).
