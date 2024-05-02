@@ -6,7 +6,7 @@ The two main spreadsheets in this paper is IMF's World Economic Outlook (WEO) (A
 
 | Variable                           | Folder/Filename                                               |
 | -----------------------------------| --------------------------------------------------------------|
-| Wolf et al.'s original spreadsheet | Trade/imf-dm-export-20240420.xlsx                             |
+| Wolf et al.'s original spreadsheet | CBRDATA/LDTEST1.XLS                                           |
 | World GDP growth                   | Trade/imf-dm-export-20240420.xlsx                             |
 | Income Level                       | List_of_countries.xlsx                                        |
 | Exchange Rate Regime               | Regimes/REGIMETS_2023.xlsx                                    |
