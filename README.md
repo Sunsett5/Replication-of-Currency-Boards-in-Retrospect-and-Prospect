@@ -17,6 +17,8 @@ The two main spreadsheets in this paper is IMF's World Economic Outlook (WEO) (A
 | Trade Data                         | Trade/Trade-data-from-IMF-DOTS-database 2023Q4.xlsx           |
 | Banking Crisis                     | Crisis/BNKSTRT-data-from-Metrick-Schmelzing-plus-Schuler.xlsx |
 
+Other files not listed here are compiled by Wolf et al.
+
 <ins>Consolidating spreadsheets</ins>
 
 To consolidate all spreadsheets into 1 main spreadsheet, run the following notebooks in the folder MainSpreadsheet. Duplicated series are taken from WEO database first. Then, we fill any missing datapoints with data from IFS database and Wolf et al.'s orinal spreadsheet in that order. Due to rebasing issues, some nominal series such as price level and nominal GDP may have some discrepancies, but the growth rate series are reliable.
