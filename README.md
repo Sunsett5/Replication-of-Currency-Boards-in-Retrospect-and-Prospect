@@ -18,7 +18,7 @@ The two main spreadsheets in this paper is IMF's World Economic Outlook (WEO) (A
 
 <ins>Consolidating spreadsheets</ins>
 
-To consolidate all spreadsheets into 1 main spreadsheet, run the following notebook in order. Duplicated series are taken from WEO database. Then, we fill any missing datapoints with data from IFS database and Wolf et al.'s orinal spreadsheet in order. Some nominal series such as price level and nominal GDP may have some discrepancies, but the growth rate series are reliable.
+To consolidate all spreadsheets into 1 main spreadsheet, run the following notebook in the folder MainSpreadsheet. Duplicated series are taken from WEO database. Then, we fill any missing datapoints with data from IFS database and Wolf et al.'s orinal spreadsheet in order. Some nominal series such as price level and nominal GDP may have some discrepancies, but the growth rate series are reliable.
 
 1. WEO-base.ipynb
 2. IFS-base.ipynb
