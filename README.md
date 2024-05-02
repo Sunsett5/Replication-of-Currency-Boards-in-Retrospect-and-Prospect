@@ -4,17 +4,18 @@
 
 The two main spreadsheets in this paper is IMF's World Economic Outlook (WEO) (April 2024) and International Financial Statistics (IFS) (2023) database. Both spreadsheet are located in the folder "MainSpreadsheet". Other spreadsheet for individual series and their folders are listed below:
 
-| Variable              | Folder/Filename                                               |
-| --------------------- | --------------------------------------------------------------|
-| World GDP growth      | Trade/imf-dm-export-20240420.xlsx                             |
-| Income Level          | List_of_countries.xlsx                                        |
-| Exchange Rate Regime  | Regimes/REGIMETS_2023.xlsx                                    |
-| Sovereign Debt        | SovereignDebt/SOVD-data-from-Schuler.xlsx                     |
-| Central Bank Turnover | Cbturn/CBGOV-data-from-Dreher.xlsx                            |
-| Currency Control      | CURCON-KAPCON/CURCON-data-from-AREAR.xlsx                     |
-| Capital Control       | CURCON-KAPCON/KAPCON-data-from-Chinn-Ito.xlsx                 |
-| Trade Data            | Trade/Trade data from IMF DOTS database 2023Q4                |
-| Banking Crisis        | Crisis/BNKSTRT-data-from-Metrick-Schmelzing-plus-Schuler.xlsx |
+| Variable                           | Folder/Filename                                               |
+| -----------------------------------| --------------------------------------------------------------|
+| Wolf et al.'s original spreadsheet | Trade/imf-dm-export-20240420.xlsx                             |
+| World GDP growth                   | Trade/imf-dm-export-20240420.xlsx                             |
+| Income Level                       | List_of_countries.xlsx                                        |
+| Exchange Rate Regime               | Regimes/REGIMETS_2023.xlsx                                    |
+| Sovereign Debt                     | SovereignDebt/SOVD-data-from-Schuler.xlsx                     |
+| Central Bank Turnover              | Cbturn/CBGOV-data-from-Dreher.xlsx                            |
+| Currency Control                   | CURCON-KAPCON/CURCON-data-from-AREAR.xlsx                     |
+| Capital Control                    | CURCON-KAPCON/KAPCON-data-from-Chinn-Ito.xlsx                 |
+| Trade Data                         | Trade/Trade-data-from-IMF-DOTS-database 2023Q4.xlsx           |
+| Banking Crisis                     | Crisis/BNKSTRT-data-from-Metrick-Schmelzing-plus-Schuler.xlsx |
 
 <ins>Consolidating spreadsheets</ins>
 
